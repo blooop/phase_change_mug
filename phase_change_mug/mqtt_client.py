@@ -10,8 +10,10 @@ class TemperatureSensor:
 
     def __init__(self) -> None:
         self.topic = "tele/sonoff/SENSOR"
+        # self.topic = "#"
         self.client = self.connect_mqtt()
-        self.subscribe(self.client)   
+        self.subscribe(self.client) 
+
         self.temperature=0.  
         self.start_time = None
         self.time_relative= None
@@ -32,7 +34,8 @@ class TemperatureSensor:
         client = mqtt_client.Client(client_id)
         # client.username_pw_set(username, password)
         client.on_connect = on_connect
-        client.connect(broker, port)
+        client.connect(broker, port,10)
+        client.loop_start()
         return client
 
     def on_message(self,client, userdata, msg):
@@ -47,28 +50,18 @@ class TemperatureSensor:
 
         self.time_relative = self.time_abs- self.start_time 
         print(self.time_abs)
-        print(self.time_relative)
+        print(self.time_relative)   
         print(self.temperature)
 
     def subscribe(self,client: mqtt_client):
         client.subscribe(self.topic)
         client.on_message = self.on_message
+
         return client
 
-
-    def run(self):
-        
-        # client.loop_forever()
-        while 1:
-            # client.publish("cmnd/sonoff/stat/STATUS","8")
-            self.client.loop()
-            time.sleep(1)
-
-
     def get_data(self):
-        self.client.loop()
-        while self.start_time is None:            
-            self.client.loop()
+        
+        while self.start_time is None:                        
             print("waiting for data...")
             time.sleep(1)
 
