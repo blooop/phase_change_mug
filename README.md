@@ -1,16 +1,5 @@
 # phase_change_mug
-A template repo for python projects
 
-This has basic setup for
-
-* pylint
-* ruff
-* black
-* pytest
-* codecov
-* git-lfs
-* basic github actions ci
-* pulling updates from this template
 
 ## Continuous Integration Status
 
