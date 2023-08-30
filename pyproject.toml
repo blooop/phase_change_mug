@@ -1,5 +1,5 @@
 [project]
-name = "python_template"
+name = "phase_change_mug"
 version = "0.0.1"
 
 authors = [{ name = "Austin Gregg-Smith", email = "blooop@gmail.com" }]
@@ -27,12 +27,12 @@ test = [
 ]
 
 [project.urls]
-Source = "https://github.com/blooop/python_template"
-Home = "https://github.com/blooop/python_template"
+Source = "https://github.com/blooop/phase_change_mug"
+Home = "https://github.com/blooop/phase_change_mug"
 
 
 [tool.flit.module]
-name = "python_template"
+name = "phase_change_mug"
 
 [build-system]
 requires = ["flit_core >=3.2,<4"]
