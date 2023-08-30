@@ -8,8 +8,7 @@ class MugTemp(bch.ParametrizedSweep):
     pass
 
 
-bench = bch.BenchRunner.from_parametrized_sweep(MugTemp())
-
+bench = bch.Bench("mug_temps",MugTemp())
 
 df = pd.read_csv("phase_change_mug/data.csv")
 ds = hv.Dataset(df)
