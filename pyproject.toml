@@ -9,7 +9,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 
 
-dependencies = ["numpy>=1.2,<=1.25.2"]
+dependencies = ["numpy>=1.2,<=1.25.2", "holobench>=0.2.0,<=0.2.0"]
 
 [project.optional-dependencies]
 test = [
