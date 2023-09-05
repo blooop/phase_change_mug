@@ -1,6 +1,5 @@
 # phase_change_mug
 
-
 ## Continuous Integration Status
 
 [![Ci](https://github.com/blooop/phase_change_mug/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/blooop/phase_change_mug/actions/workflows/ci.yml?query=branch%3Amain)
@@ -11,5 +10,6 @@
 [![License](https://img.shields.io/pypi/l/bencher)](https://opensource.org/license/mit/)
 [![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11-blue)](https://www.python.org/downloads/release/python-310/)
 
+# Results
 
-To set up your project run the vscode task "pull updates from template repo" and then task "rename project template name"
+https://blooop.github.io/phase_change_mug/
