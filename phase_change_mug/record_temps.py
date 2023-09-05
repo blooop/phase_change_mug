@@ -14,11 +14,13 @@ duration = 30.
 
 
 class MugWallType(StrEnum):
+    air = auto()
+    # test=auto()
+    air_pavina=auto()
+    bees_wax =auto()
     ceramic = auto()
     soy_wax = auto()
     glass=auto()
-    # air = auto()
-    # bees_wax =auto()
     # cocunut_wax = auto()
 
 class TemperatureRecorder(bch.ParametrizedSweep):
@@ -27,12 +29,12 @@ class TemperatureRecorder(bch.ParametrizedSweep):
 
     temperature = bch.ResultVar("deg C")
 
-    mug = bch.EnumSweep(MugWallType)
+    mug = bch.EnumSweep(MugWallType,units="")
 
     def __init__(self, **params):
         super().__init__(**params)
         self.temp_sense = TemperatureSensor()
-        self.temp_sense.get_data()
+        # self.temp_sense.get_data()
         self.start_time = time.time()
 
     def __call__(self,**kwargs):
@@ -53,14 +55,19 @@ class TemperatureRecorder(bch.ParametrizedSweep):
 run_cfg = bch.BenchRunCfg()
 run_cfg.use_sample_cache=True
 run_cfg.only_hash_tag=True
+run_cfg.repeats=1
+# run_cfg.overwrite_sample_cache=True
 # run_cfg.use_cache = True
 # run_cfg.over_time=True
+run_cfg.auto_plot=False
 bench = bch.Bench("mug_temps",TemperatureRecorder(),run_cfg=run_cfg)
 
 res =bench.plot_sweep("Time vs Temperature",input_vars=[TemperatureRecorder.param.time,TemperatureRecorder.                                                  param.mug],result_vars=[TemperatureRecorder.param.temperature],
 const_vars=TemperatureRecorder.get_input_defaults())
 # const_vars=TemperatureRecorder.get_input_defaults([TemperatureRecorder.param.mug.with_const(MugWallType.glass)]))
 
-# bench.append(res.ds.to_dataframe().hvplot)
+bench.append(res.to_hv_dataset().to(hv.Table))
+bench.append(res.to_curve().overlay().opts(width=500,height=500,ylim=(45,92)))
+# bench.append(res.ds.to_dataframe().hvplot.line(x=["time"],y=["temperature"]))
 bench.show()
 
