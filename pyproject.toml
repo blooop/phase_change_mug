@@ -9,7 +9,11 @@ readme = "README.md"
 requires-python = ">=3.10"
 
 
-dependencies = ["numpy>=1.2,<=1.25.2", "holobench>=0.2.0,<=0.2.3"]
+dependencies = [
+  "numpy>=1.2,<=1.25.2",
+  "holobench>=0.2.0,<=0.2.3",
+  "paho-mqtt<=1.6.1,paho-mqtt>=1.6.1",
+]
 
 [project.optional-dependencies]
 test = [
