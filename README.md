@@ -12,6 +12,4 @@
 [![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11-blue)](https://www.python.org/downloads/release/python-310/)
 
 
-To set up your project, use ctrl+shift+h to relace all instances of "phase_change_mug" with your package name.
-
-To update the readme find replace "blooop/phase_change_mug" with your repo username and name.
+To set up your project run the vscode task "pull updates from template repo" and then task "rename project template name"
