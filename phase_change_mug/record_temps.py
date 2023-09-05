@@ -1,7 +1,6 @@
 import holoviews as hv
-import hvplot.pandas  # noqa pylint :ignore
 import bencher as bch
-from mqtt_client import TemperatureSensor
+from phase_change_mug.mqtt_client import TemperatureSensor
 import time
 from enum import auto
 from strenum import StrEnum
@@ -73,4 +72,5 @@ bench.append(res.summarise_sweep())
 bench.append(res.to_curve().overlay().opts(width=500, height=500, ylim=(45, 92)))
 bench.append(res.to_hv_dataset().to(hv.Table), "Temperature vs Time per mug")
 # bench.append(res.ds.to_dataframe().hvplot.line(x=["time"],y=["temperature"]))
+# bench.save_index()
 bench.show()

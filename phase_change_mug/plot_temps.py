@@ -1,6 +1,6 @@
 import holoviews as hv
 import pandas as pd
-import hvplot.pandas  # noqa pylint :ignore
+import hvplot.pandas  # noqa pylint: disable=unused-import
 import bencher as bch
 from phase_change_mug.publish_args import publish_args
 
