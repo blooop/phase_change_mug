@@ -28,6 +28,8 @@ class TemperatureRecorder(TemperatureRecorderBase):
     mug = bch.EnumSweep(MugWallType, units="")
 
 def mug_temps(run_cfg:bch.BenchRunCfg=bch.BenchRunCfg() ):
+    run_cfg.use_sample_cache = True
+    run_cfg.only_hash_tag = True
     run_cfg.auto_plot = False
     bench = bch.Bench("mug_temps", TemperatureRecorder(), run_cfg=run_cfg)
 
@@ -45,8 +47,5 @@ def mug_temps(run_cfg:bch.BenchRunCfg=bch.BenchRunCfg() ):
     bench.show()
 
 
-if __name__ == "__main__":    
-    run_cfg = bch.BenchRunCfg()
-    run_cfg.use_sample_cache = True
-    run_cfg.only_hash_tag = True
-    mug_temps(run_cfg).show()
+if __name__ == "__main__":       
+    mug_temps().show()
