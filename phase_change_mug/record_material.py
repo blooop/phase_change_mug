@@ -8,7 +8,7 @@ from strenum import StrEnum
 from phase_change_mug.temperature_recorder import TemperatureRecorderBase
 
 time_res = 1.0
-duration = 180.0
+duration = 60.0
 
 
 class Substance(StrEnum):
@@ -26,11 +26,13 @@ class TemperatureRecorderSubstance(TemperatureRecorderBase):
     substance = bch.EnumSweep(Substance, units="")
    
 
+def record_material()
+
 run_cfg = bch.BenchRunCfg()
 run_cfg.use_sample_cache = True
 run_cfg.only_hash_tag = True
 run_cfg.auto_plot = False
-run_cfg.run_tag = "10-9-23-v1"
+run_cfg.run_tag = "1"
 
 # run_cfg.overwrite_sample_cache=True
 bench = bch.Bench("substance_cooling_curve", TemperatureRecorderSubstance(), run_cfg=run_cfg)
