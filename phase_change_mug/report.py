@@ -10,4 +10,5 @@ bench_run.add_run(material_temps)
 
 bench_run.run(level=0,grouped=True)
 
+bench_run.report.save_index()
 bench_run.report.show()
