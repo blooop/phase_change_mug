@@ -11,7 +11,7 @@ requires-python = ">=3.10"
 
 dependencies = [
   "numpy>=1.2,<=1.25.2",
-  "holobench>=0.2.0,<=0.2.3",
+  "holobench>=0.2.5,<=0.2.5",
   "paho-mqtt<=1.6.1,>=1.6.1",
 ]
 

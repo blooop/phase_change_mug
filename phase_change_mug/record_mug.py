@@ -38,9 +38,9 @@ def mug_temps(run_cfg: bch.BenchRunCfg = bch.BenchRunCfg()):
         const_vars=TemperatureRecorder.get_input_defaults(),
     )
 
-    bench.append(res.summarise_sweep())
-    bench.append(res.to_curve().overlay().opts(width=500, height=500, ylim=(45, 92)))
-    bench.append(res.to_hv_dataset().to(hv.Table), "Temperature vs Time per mug")
+    bench.report.append(res.summarise_sweep())
+    bench.report.append(res.to_curve().overlay().opts(width=500, height=500, ylim=(45, 92)))
+    bench.report.append(res.to_hv_dataset().to(hv.Table), "Temperature vs Time per mug")
     # bench.save_index()
     bench.show()
 
