@@ -1,4 +1,5 @@
 from record_mug import mug_temps
+from record_material import mat
 
 import bencher as bch
 

@@ -13,15 +13,11 @@ duration = 30.0
 
 class MugWallType(StrEnum):
     air = auto()
-    # test=auto()
     air_pavina = auto()
     bees_wax = auto()
     ceramic = auto()
     soy_wax = auto()
     glass = auto()
-    # cocunut_wax = auto()
-
-    
 
 
 class TemperatureRecorder(TemperatureRecorderBase):    
@@ -30,18 +26,9 @@ class TemperatureRecorder(TemperatureRecorderBase):
         default=0, bounds=[0, duration], samples=int(duration) + 1, units="minutes"
     )
     mug = bch.EnumSweep(MugWallType, units="")
-   
-
-run_cfg = bch.BenchRunCfg()
-run_cfg.use_sample_cache = True
-run_cfg.only_hash_tag = True
-run_cfg.repeats = 1
-# run_cfg.overwrite_sample_cache=True
-# run_cfg.use_cache = True
-# run_cfg.over_time=True
-run_cfg.auto_plot = False
 
 def mug_temps(run_cfg=bch.BenchRunCfg() ):
+    run_cfg.auto_plot = False
     bench = bch.Bench("mug_temps", TemperatureRecorder(), run_cfg=run_cfg)
 
     res = bench.plot_sweep(
@@ -51,12 +38,19 @@ def mug_temps(run_cfg=bch.BenchRunCfg() ):
         const_vars=TemperatureRecorder.get_input_defaults(),
     )
 
-
-
     bench.append(res.summarise_sweep())
     bench.append(res.to_curve().overlay().opts(width=500, height=500, ylim=(45, 92)))
     bench.append(res.to_hv_dataset().to(hv.Table), "Temperature vs Time per mug")
-    return bench
-# bench.save_index()
+    # bench.save_index()
+    bench.show()
+
+
 if __name__ == "__main__":
-    mug_temps().show()
+    run_cfg = bch.BenchRunCfg()
+    run_cfg.use_sample_cache = True
+    run_cfg.only_hash_tag = True
+    run_cfg.repeats = 1
+    # run_cfg.overwrite_sample_cache=True
+    # run_cfg.use_cache = True
+    # run_cfg.over_time=True
+    mug_temps(run_cfg).show()
