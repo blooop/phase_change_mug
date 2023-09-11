@@ -1,12 +1,10 @@
-import holoviews as hv
 import bencher as bch
 from phase_change_mug.mqtt_client import TemperatureSensor
 import time
-from enum import auto
-from strenum import StrEnum
 
 time_res = 1.0
 duration = 30.0
+
 
 class TemperatureRecorderBase(bch.ParametrizedSweep):
     time = bch.FloatSweep(
@@ -14,7 +12,6 @@ class TemperatureRecorderBase(bch.ParametrizedSweep):
     )
 
     temperature = bch.ResultVar("deg C")
-    
 
     def __init__(self, **params):
         super().__init__(**params)
@@ -34,4 +31,3 @@ class TemperatureRecorderBase(bch.ParametrizedSweep):
         self.temp_sense.get_data()
         self.temperature = self.temp_sense.temperature
         return self.get_results_values_as_dict()
-

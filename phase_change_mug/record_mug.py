@@ -1,7 +1,5 @@
 import holoviews as hv
 import bencher as bch
-from phase_change_mug.mqtt_client import TemperatureSensor
-import time
 from enum import auto
 from strenum import StrEnum
 
@@ -20,14 +18,14 @@ class MugWallType(StrEnum):
     glass = auto()
 
 
-class TemperatureRecorder(TemperatureRecorderBase):    
-
+class TemperatureRecorder(TemperatureRecorderBase):
     time = bch.FloatSweep(
         default=0, bounds=[0, duration], samples=int(duration) + 1, units="minutes"
     )
     mug = bch.EnumSweep(MugWallType, units="")
 
-def mug_temps(run_cfg:bch.BenchRunCfg=bch.BenchRunCfg() ):
+
+def mug_temps(run_cfg: bch.BenchRunCfg = bch.BenchRunCfg()):
     run_cfg.use_sample_cache = True
     run_cfg.only_hash_tag = True
     run_cfg.auto_plot = False
@@ -47,5 +45,5 @@ def mug_temps(run_cfg:bch.BenchRunCfg=bch.BenchRunCfg() ):
     bench.show()
 
 
-if __name__ == "__main__":       
+if __name__ == "__main__":
     mug_temps().show()
