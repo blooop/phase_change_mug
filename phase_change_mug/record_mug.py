@@ -25,6 +25,10 @@ class MugWallType(StrEnum):
 
 
 class TemperatureRecorder(TemperatureRecorderBase):    
+
+    time = bch.FloatSweep(
+        default=0, bounds=[0, duration], samples=int(duration) + 1, units="minutes"
+    )
     mug = bch.EnumSweep(MugWallType, units="")
    
 
@@ -37,7 +41,7 @@ run_cfg.repeats = 1
 # run_cfg.over_time=True
 run_cfg.auto_plot = False
 
-def mug_temps(run_cfg, pane):
+def mug_temps(run_cfg=bch.BenchRunCfg() ):
     bench = bch.Bench("mug_temps", TemperatureRecorder(), run_cfg=run_cfg)
 
     res = bench.plot_sweep(

@@ -8,12 +8,12 @@ from strenum import StrEnum
 from phase_change_mug.temperature_recorder import TemperatureRecorderBase
 
 time_res = 1.0
-duration = 90.0
+duration = 60.0
 
 
 class Substance(StrEnum):
-    bees_wax = auto()
-    # soy_wax = auto() 
+    # bees_wax = auto()
+    soy_wax = auto() 
     # cocunut_wax=auto()
 
 
