@@ -38,11 +38,10 @@ def mug_temps(run_cfg: bch.BenchRunCfg = bch.BenchRunCfg(),report:bch.BenchRepor
         const_vars=TemperatureRecorder.get_input_defaults(),
     )
 
-    bench.report.append(res.summarise_sweep())
-    bench.report.append(res.to_curve().overlay().opts(width=500, height=500, ylim=(45, 92)))
-    bench.report.append(res.to_hv_dataset().to(hv.Table), "Temperature vs Time per mug")
-    # bench.save_index()
-    bench.show()
+    report.append_tab(res.summarise_sweep())
+    report.append(res.to_curve().overlay().opts(width=500, height=500, ylim=(45, 92),shared_axes=False))
+    report.append(res.to_hv_dataset().to(hv.Table), "Temperature vs Time per mug")
+    return bench
 
 
 if __name__ == "__main__":

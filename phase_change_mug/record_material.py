@@ -41,7 +41,7 @@ def material_temps(run_cfg: bch.BenchRunCfg = bch.BenchRunCfg(),report:bch.Bench
         const_vars=TemperatureRecorderSubstance.get_input_defaults(),
     )
 
-    bench.report.append(res.summarise_sweep())
+    bench.report.append_tab(res.summarise_sweep())
     bench.report.append(res.to_curve().overlay().opts(width=500, height=500))
     bench.report.append(res.to_hv_dataset().to(hv.Table), "Temperature vs Time per mug")
     return bench
