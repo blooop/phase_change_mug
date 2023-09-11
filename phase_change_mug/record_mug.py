@@ -25,14 +25,14 @@ class TemperatureRecorder(TemperatureRecorderBase):
     mug = bch.EnumSweep(MugWallType, units="")
 
 
-def mug_temps(run_cfg: bch.BenchRunCfg = bch.BenchRunCfg()):
+def mug_temps(run_cfg: bch.BenchRunCfg = bch.BenchRunCfg(),report:bch.BenchReport=bch.BenchReport()):
     run_cfg.use_sample_cache = True
     run_cfg.only_hash_tag = True
     run_cfg.auto_plot = False
-    bench = bch.Bench("mug_temps", TemperatureRecorder(), run_cfg=run_cfg)
+    bench = bch.Bench("mug_temps", TemperatureRecorder(), run_cfg=run_cfg,report=report)
 
     res = bench.plot_sweep(
-        "Time vs Temperature",
+        "Mug Temperature vs Time",
         input_vars=[TemperatureRecorder.param.time, TemperatureRecorder.param.mug],
         result_vars=[TemperatureRecorder.param.temperature],
         const_vars=TemperatureRecorder.get_input_defaults(),

@@ -23,16 +23,16 @@ class TemperatureRecorderSubstance(TemperatureRecorderBase):
     substance = bch.EnumSweep(Substance, units="")
 
 
-def material_temps(run_cfg: bch.BenchRunCfg = bch.BenchRunCfg()):
+def material_temps(run_cfg: bch.BenchRunCfg = bch.BenchRunCfg(),report:bch.BenchReport=bch.BenchReport()):
     run_cfg.use_sample_cache = True
     run_cfg.only_hash_tag = True
     run_cfg.auto_plot = False
     run_cfg.run_tag = "10-9-23-v1"
     # run_cfg.overwrite_sample_cache=True
-    bench = bch.Bench("substance_cooling_curve", TemperatureRecorderSubstance(), run_cfg=run_cfg)
+    bench = bch.Bench("substance_cooling_curve", TemperatureRecorderSubstance(), run_cfg=run_cfg,report=report)
 
     res = bench.plot_sweep(
-        "Time vs Temperature",
+        "Material Temperature vs Time",
         input_vars=[
             TemperatureRecorderSubstance.param.time,
             TemperatureRecorderSubstance.param.substance,
