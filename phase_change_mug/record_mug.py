@@ -1,0 +1,58 @@
+import holoviews as hv
+import bencher as bch
+from phase_change_mug.mqtt_client import TemperatureSensor
+import time
+from enum import auto
+from strenum import StrEnum
+
+from phase_change_mug.temperature_recorder import TemperatureRecorderBase
+
+time_res = 1.0
+duration = 30.0
+
+
+class MugWallType(StrEnum):
+    air = auto()
+    # test=auto()
+    air_pavina = auto()
+    bees_wax = auto()
+    ceramic = auto()
+    soy_wax = auto()
+    glass = auto()
+    # cocunut_wax = auto()
+
+    
+
+
+class TemperatureRecorder(TemperatureRecorderBase):    
+    mug = bch.EnumSweep(MugWallType, units="")
+   
+
+run_cfg = bch.BenchRunCfg()
+run_cfg.use_sample_cache = True
+run_cfg.only_hash_tag = True
+run_cfg.repeats = 1
+# run_cfg.overwrite_sample_cache=True
+# run_cfg.use_cache = True
+# run_cfg.over_time=True
+run_cfg.auto_plot = False
+
+def mug_temps(run_cfg, pane):
+    bench = bch.Bench("mug_temps", TemperatureRecorder(), run_cfg=run_cfg)
+
+    res = bench.plot_sweep(
+        "Time vs Temperature",
+        input_vars=[TemperatureRecorder.param.time, TemperatureRecorder.param.mug],
+        result_vars=[TemperatureRecorder.param.temperature],
+        const_vars=TemperatureRecorder.get_input_defaults(),
+    )
+
+
+
+    bench.append(res.summarise_sweep())
+    bench.append(res.to_curve().overlay().opts(width=500, height=500, ylim=(45, 92)))
+    bench.append(res.to_hv_dataset().to(hv.Table), "Temperature vs Time per mug")
+    return bench
+# bench.save_index()
+if __name__ == "__main__":
+    mug_temps().show()
