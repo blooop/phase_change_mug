@@ -33,12 +33,10 @@ class TemperatureRecorderBase(bch.ParametrizedSweep):
         return self.get_results_values_as_dict()
 
     def poll(self):
-        while(True):
+        while True:
             # self.__call__()
             time.sleep(10)
 
 
 if __name__ == "__main__":
     TemperatureRecorderBase().poll()
-
-    
