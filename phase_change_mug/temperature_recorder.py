@@ -31,3 +31,12 @@ class TemperatureRecorderBase(bch.ParametrizedSweep):
         self.temp_sense.get_data()
         self.temperature = self.temp_sense.temperature
         return self.get_results_values_as_dict()
+
+    def poll(self):
+        while True:
+            # self.__call__()
+            time.sleep(10)
+
+
+if __name__ == "__main__":
+    TemperatureRecorderBase().poll()

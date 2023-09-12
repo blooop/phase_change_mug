@@ -11,7 +11,7 @@ duration = 180.0
 
 class Substance(StrEnum):
     bees_wax = auto()
-    soy_wax = auto()
+    # soy_wax = auto()
     # cocunut_wax=auto()
 
 
@@ -30,7 +30,6 @@ def material_temps(
     run_cfg.only_hash_tag = True
     run_cfg.auto_plot = False
     run_cfg.run_tag = "11-9-23-v1"
-    # run_cfg.overwrite_sample_cache=True
     bench = bch.Bench(
         "substance_cooling_curve", TemperatureRecorderSubstance(), run_cfg=run_cfg, report=report
     )
