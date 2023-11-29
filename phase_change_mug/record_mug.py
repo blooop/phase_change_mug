@@ -112,3 +112,4 @@ def mug_temps(
 
 if __name__ == "__main__":
     mug_temps().report.show()
+    mug_temps().report.save_index()
