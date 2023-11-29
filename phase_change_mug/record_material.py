@@ -1,9 +1,9 @@
-import holoviews as hv
 import bencher as bch
 from enum import auto
 from strenum import StrEnum
 import pandas as pd
 from phase_change_mug.temperature_recorder import TemperatureRecorderBase
+
 # from phase_change_mug.record_material import Su
 
 time_res = 1.0
@@ -15,8 +15,7 @@ duration = 180.0
 class Substance(StrEnum):
     bees_wax = auto()
     soy_wax = auto()
-    cocunut_wax=auto()
-
+    cocunut_wax = auto()
 
 
 class TemperatureRecorderSubstance(TemperatureRecorderBase):
@@ -31,16 +30,13 @@ class TemperatureRecorderSubstance(TemperatureRecorderBase):
         # df.set_index("time",inplace=True)
         # print(df)
         tm = kwargs["time"]
-        dat =df.loc[df["time"]==tm]["temperature"]
+        dat = df.loc[df["time"] == tm]["temperature"]
         self.temperature = dat.values[0]
-        self.temperature=100.
+        self.temperature = 100.0
 
         # print(self.temperature)
 
         # return dict(temperature=dat)
-
-
-
 
 
 def material_temps(
@@ -69,7 +65,6 @@ def material_temps(
     # print(df)
     # df.to_csv("cocuno.csv")
 
-
     bench.report.append_tab(res.summarise_sweep())
     # bench.report.append(res.to_curve().overlay().opts(width=500, height=500))
     # bench.report.append(res.to_hv_dataset().to(hv.Table), "Temperature vs Time per mug")
@@ -78,5 +73,3 @@ def material_temps(
 
 if __name__ == "__main__":
     material_temps().show()
-
-
