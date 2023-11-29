@@ -38,22 +38,22 @@ def mug_temps(
     preferred_temp=62
 
     res = bench.plot_sweep(
-        "Mug Temperature vs Time",
+        "Tea Temperature vs Time",
         description=
         """
         ## Question: 
-        What material keeps the drink in the mug closest to the ideal temperature for the longest?  I sampled tea at different temperatures and found I the hottest I could start drinking comfortably was at 62 degrees.
+        What material keeps a drink in the mug closest to the ideal temperature for the longest?  I sampled tea at different temperatures and found the hottest I could start drinking comfortably was at 62 degrees C.
 
         ### Materials:
-         - Ceramic: Your bog standard ceramic mug
+         - Ceramic: Your bog-standard ceramic mug
          - Glass: A mug made of solid glass with quite thick walls
          - Air: A tall double wall glass mug with air inside the walls. 
          - Air_pavina: A double wall pavina glass mug with air inside the walls. 
-         - bees_wax: A pavina double wall mug filled with bees wax
-         - soy_wax: A pavina double wall mug filled with soy wax         
+         - Bees_wax: A pavina double wall mug filled with bees wax
+         - Soy_wax: A pavina double wall mug filled with soy wax         
 
         ## Procedure:         
-        Pour 230ml of boiling water water into each mug material and record the temperature in 1 minute increments for 30 minutes        
+        Pour 230ml of boiling water into each mug and record the temperature in 1 minute increments for 30 minutes        
         ## Data Collection Configuration:""",
         post_description="""Lol,results""",
         input_vars=[TemperatureRecorder.param.time, TemperatureRecorder.param.mug],
@@ -72,22 +72,22 @@ def mug_temps(
 
 
     report.append_markdown("""## Discussion:
-                                 The raw data shows the temperature vs time plots for each mug temperature.  The beeswax mug's cooling curve gradient is shallower than the other materials after around 63 degrees.  This is close to the ideal temperature and in theory would keep the tea warmer for longer.  The ideal mug would keep it as near to the desired temperature as long as possible.  This plot shows the absolute difference between the mug temperature and the desired temperature.""")
+                                 The raw data shows the temperature vs time plots for each mug temperature.  The beeswax mug's cooling curve gradient is shallower than the other materials after around 63 degrees C.  The gradient changes close to the ideal tea temperature and in theory would retain the heat for longer.  The ideal mug would keep the tea as close to the desired temperature for as long as possible.  This plot shows the absolute difference between the mug temperature and the desired temperature.""")
     
     res.ds["temperature"] = abs( res.ds["temperature"]-preferred_temp)
 
     report.append(res.to_hv_dataset().to(hv.Curve).overlay().opts(shared_axes=False,title="abs(temperature-desired_temperature)"))
 
-    report.append_markdown("""The best mug would have the smallest area under the curve, this graph shows the area curve for each material""")    
+    report.append_markdown("""The best mug would have the smallest area under the curve, these graphs show the area curve for each material""")    
 
     report.append(res.to_hv_dataset().to(hv.Area).layout().opts(shared_axes=False))
 
-    report.append_markdown("""These graphs clearly show the time it takes before the tea becomes drinkable. The double wall air mugs take around 17 to 18 minutes before they are drinkable.  By this time I have usally forgotten that I made a tea. The beeswax and soy wax are drinkable the fastest at 9 minutes, and glass takes up the middle.""")    
+    report.append_markdown("""The graphs above clearly show the time it takes before the tea becomes drinkable. The double wall air mugs take around 17 to 18 minutes before they are drinkable.  By this time I have usually forgotten that I made a tea. The beeswax and soy wax are drinkable the fastest at 9 minutes, and glass takes up the middle.""")    
 
     hvds = hv.Dataset(res.ds.sum(["time"]).squeeze(),kdims="mug", vdims="temperature")
-    report.append(hvds.to(hv.Bars,kdims=["mug"],vdims="temperature").opts(title="Sum of temperature differnece vs mug material",shared_axes=False))
+    report.append(hvds.to(hv.Bars,kdims=["mug"],vdims="temperature").opts(title="Sum of absolute temperature difference vs mug material",shared_axes=False))
 
-    report.append_markdown("""This graph confirms that bees wax is the best mug material as it has the smallest area under the curve""")  
+    report.append_markdown("""This graph confirms that bees wax is the best mug material as it has the smallest area under the curve.""")  
   
     return bench
 
