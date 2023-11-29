@@ -92,7 +92,7 @@
 			"label": "pull updates from template repo",
 			"detail": "Pull any changes from the template repo into this repo by adding it as a remote. The remote is removed at the end of the command.  You may need to resolve merge conflicts",
 			"type": "shell",
-			"command": "git config --global pull.rebase false; git remote add template https://github.com/blooop/python_template.git; git fetch --all;git checkout main; git pull origin main; git checkout -B feature/update_from_template; git pull; git merge template/main --allow-unrelated-histories -m 'pull changes from remote template'; git remote remove template; git push origin feature/update_from_template"
+			"command": "git remote add template https://github.com/blooop/python_template.git; git fetch --all;git checkout main; git pull origin main; git checkout -B feature/update_from_template; git pull; git merge template/main --allow-unrelated-histories -m 'pull changes from remote template'; git remote remove template; git push origin feature/update_from_template"
 		},
 		{
 			"label": "rename template project name",
@@ -111,7 +111,7 @@
 			"command": "flit publish"
 		},
 		{
-			"label": "set <cfg> from active file; sa",
+			"label": "sa: Set Active File",
 			"type": "shell",
 			"command": "echo ${file} > ${workspaceFolder}/.vscode/active_file.cfg; echo Setting the current file: ${file} as the active file.",
 			"problemMatcher": [],
@@ -121,19 +121,9 @@
 			}
 		},
 		{
-			"label": "run <cfg>",
+			"label": "ra: Run Active File",
 			"type": "shell",
 			"command": "RUNFILE=$(cat ${workspaceFolder}/.vscode/active_file.cfg); echo Running file: $RUNFILE; python3 $RUNFILE",
-			"problemMatcher": [],
-			"group": {
-				"kind": "build",
-				"isDefault": "True"
-			}
-		},
-		{
-			"label": "run <cfg> with scoop",
-			"type": "shell",
-			"command": "RUNFILE=$(cat ${workspaceFolder}/.vscode/active_file.cfg); echo Running file: $RUNFILE; python3 -m scoop $RUNFILE",
 			"problemMatcher": [],
 			"group": {
 				"kind": "build",
