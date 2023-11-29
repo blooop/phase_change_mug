@@ -12,7 +12,7 @@ duration = 180.0
 class Substance(StrEnum):
     bees_wax = auto()
     soy_wax = auto()
-    cocunut_wax=auto()
+    cocunut_wax = auto()
 
 
 class TemperatureRecorderSubstance(TemperatureRecorderBase):
