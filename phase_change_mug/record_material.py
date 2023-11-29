@@ -4,6 +4,7 @@ from enum import auto
 from strenum import StrEnum
 import pandas as pd
 from phase_change_mug.temperature_recorder import TemperatureRecorderBase
+# from phase_change_mug.record_material import Su
 
 time_res = 1.0
 duration = 180.0
@@ -11,6 +12,11 @@ duration = 180.0
 
 # soy_wax = auto()
 # cocunut_wax=auto()
+class Substance(StrEnum):
+    bees_wax = auto()
+    soy_wax = auto()
+    cocunut_wax=auto()
+
 
 
 class TemperatureRecorderSubstance(TemperatureRecorderBase):
@@ -66,7 +72,7 @@ def material_temps(
 
     bench.report.append_tab(res.summarise_sweep())
     # bench.report.append(res.to_curve().overlay().opts(width=500, height=500))
-    bench.report.append(res.to_hv_dataset().to(hv.Table), "Temperature vs Time per mug")
+    # bench.report.append(res.to_hv_dataset().to(hv.Table), "Temperature vs Time per mug")
     return bench
 
 
