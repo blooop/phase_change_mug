@@ -57,8 +57,8 @@ def mug_temps(
          - Soy_wax: A pavina double wall mug filled with soy wax         
 
         ## Procedure:         
-        Pour 230ml of boiling water into each mug and record the temperature in 1 minute increments for 30 minutes        
-        ## Data Collection Configuration:""",
+        Pour 230ml of boiling water into each mug and record the temperature in 1 minute increments for 30 minutes
+        """,
         post_description="""Lol,results""",
         input_vars=[TemperatureRecorder.param.time, TemperatureRecorder.param.mug],
         result_vars=[TemperatureRecorder.param.temperature],
@@ -66,7 +66,6 @@ def mug_temps(
     )
 
     report.append_tab(res.summarise_sweep())
-    report.append_markdown("## Results:")
     report.append(
         res.to_curve().overlay().opts(ylim=(45, 92), shared_axes=False, title=res.title)
         * hv.HLine(61).opts(color="r", line_width=1, line_dash="dashed")
