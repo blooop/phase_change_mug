@@ -12,6 +12,3 @@ RUN touch README.md \
     && mkdir -p src/phase_change_mug \
     && python -m flit install --only-deps --deps develop \
     && rm -r pyproject.toml README.md src
-
-# RUN pre-commit install
-# RUN pre-commit install --hook-type commit-msg
