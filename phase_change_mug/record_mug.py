@@ -59,7 +59,6 @@ def mug_temps(
         ## Procedure:         
         Pour 230ml of boiling water into each mug and record the temperature in 1 minute increments for 30 minutes
         """,
-        post_description="""Lol,results""",
         input_vars=[TemperatureRecorder.param.time, TemperatureRecorder.param.mug],
         result_vars=[TemperatureRecorder.param.temperature],
         const_vars=TemperatureRecorder.get_input_defaults(),
@@ -68,12 +67,13 @@ def mug_temps(
     report.append_tab(res.summarise_sweep())
     report.append(
         res.to_curve().overlay().opts(ylim=(45, 92), shared_axes=False, title=res.title)
-        * hv.HLine(61).opts(color="r", line_width=1, line_dash="dashed")
+        * hv.HLine(preferred_temp).opts(color="r", line_width=1, line_dash="dashed")
     )
 
     report.append_markdown(
-        """## Discussion:
-                                 The raw data shows the temperature vs time plots for each mug temperature.  The beeswax mug's cooling curve gradient is shallower than the other materials after around 63 degrees C.  The gradient changes close to the ideal tea temperature and in theory would retain the heat for longer.  The ideal mug would keep the tea as close to the desired temperature for as long as possible.  This plot shows the absolute difference between the mug temperature and the desired temperature."""
+        """
+## Discussion:
+The raw data above shows the temperature vs time plots for each mug temperature.  The beeswax mug's cooling curve gradient is shallower than the other materials after around 63 degrees C.  The gradient changes close to the ideal tea temperature and in theory would retain the heat for longer.  The ideal mug would keep the tea as close to the desired temperature for as long as possible.  The plot below shows the absolute difference between the mug temperature and the desired temperature."""
     )
 
     res.ds["temperature"] = abs(res.ds["temperature"] - preferred_temp)
