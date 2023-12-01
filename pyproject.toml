@@ -1,8 +1,6 @@
 [project]
 name = "phase_change_mug"
 version = "0.0.1"
-name = "python_template"
-version = "0.1.0"
 
 authors = [{ name = "Austin Gregg-Smith", email = "blooop@gmail.com" }]
 description = "A python package template"
