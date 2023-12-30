@@ -37,7 +37,6 @@ def mug_temps(
         TemperatureRecorder(),
         run_cfg=run_cfg,
         report=report,
-        plot_lib=bch.PlotLibrary.none().add(bch.PlotTypes.lineplot_hv),
     )
 
     preferred_temp = 62
@@ -64,9 +63,9 @@ def mug_temps(
         const_vars=TemperatureRecorder.get_input_defaults(),
     )
 
-    report.append_tab(res.summarise_sweep())
+    report.append_tab(res.to_sweep_summary())
     report.append(
-        res.to_curve().overlay().opts(ylim=(45, 92), shared_axes=False, title=res.title)
+        res.to_line_ds(res.to_dataset(), TemperatureRecorder.param.temperature)
         * hv.HLine(preferred_temp).opts(color="r", line_width=1, line_dash="dashed")
     )
 
