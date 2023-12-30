@@ -61,7 +61,7 @@ def mug_temps(
         input_vars=[TemperatureRecorder.param.time, TemperatureRecorder.param.mug],
         result_vars=[TemperatureRecorder.param.temperature],
         const_vars=TemperatureRecorder.get_input_defaults(),
-        plot=False
+        plot=False,
     )
 
     report.append(res.to_sweep_summary())
@@ -113,4 +113,3 @@ The raw data above shows the temperature vs time plots for each mug temperature.
 if __name__ == "__main__":
     # mug_temps().report.save_index()
     mug_temps().report.show()
-
