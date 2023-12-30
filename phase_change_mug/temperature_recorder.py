@@ -11,7 +11,7 @@ class TemperatureRecorderBase(bch.ParametrizedSweep):
         default=0, bounds=[0, duration], samples=int(duration) + 1, units="minutes"
     )
 
-    temperature = bch.ResultVar("deg C")
+    temperature = bch.ResultVar(units="deg C")
 
     def __init__(self, **params):
         super().__init__(**params)
