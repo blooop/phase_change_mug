@@ -22,7 +22,7 @@ class TemperatureRecorder(TemperatureRecorderBase):
     time = bch.FloatSweep(
         default=0, bounds=[0, duration], samples=int(duration) + 1, units="minutes"
     )
-    mug = bch.EnumSweep(MugWallType, units="")
+    mug = bch.EnumSweep(MugWallType)
 
 
 def mug_temps(
