@@ -72,4 +72,4 @@ def material_temps(
 
 
 if __name__ == "__main__":
-    material_temps().show()
+    material_temps().report.show()
