@@ -1,6 +1,7 @@
-import holoviews as hv
-import bencher as bch
 from enum import auto
+
+import bencher as bch
+import holoviews as hv
 from strenum import StrEnum
 
 from phase_change_mug.temperature_recorder import TemperatureRecorderBase

@@ -1,7 +1,9 @@
-import bencher as bch
 from enum import auto
-from strenum import StrEnum
+
+import bencher as bch
 import pandas as pd
+from strenum import StrEnum
+
 from phase_change_mug.temperature_recorder import TemperatureRecorderBase
 
 # from phase_change_mug.record_material import Su

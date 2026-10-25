@@ -1,11 +1,11 @@
 # python3.6
 
+import json
 import random
+import time
+from datetime import datetime
 
 from paho.mqtt import client as mqtt_client
-import time
-import json
-from datetime import datetime
 
 
 class TemperatureSensor:
@@ -26,7 +26,7 @@ class TemperatureSensor:
         # Generate a Client ID with the subscribe prefix.
         client_id = f"subscribe-{random.randint(0, 100)}"
 
-        def on_connect(client, userdata, flags, rc):  # noqa pylint :ignore
+        def on_connect(client, userdata, flags, rc):
             if rc == 0:
                 print("Connected to MQTT Broker!")
             else:
@@ -39,7 +39,7 @@ class TemperatureSensor:
         client.loop_start()
         return client
 
-    def on_message(self, client, userdata, msg):  # noqa pylint :ignore
+    def on_message(self, client, userdata, msg):
         decoded = msg.payload.decode()
         print(f"Received `{decoded}` from `{msg.topic}` topic")
         dat = json.loads(decoded)
