@@ -25,7 +25,8 @@ class TemperatureRecorderSubstance(TemperatureRecorderBase):
 
 
 def material_temps(
-    run_cfg: bch.BenchRunCfg = bch.BenchRunCfg(), report: bch.BenchReport = bch.BenchReport()
+    run_cfg: bch.BenchRunCfg = bch.BenchRunCfg(),  # noqa: B008
+    report: bch.BenchReport = bch.BenchReport(),  # noqa: B008
 ):
     run_cfg.use_sample_cache = True
     run_cfg.only_hash_tag = True
