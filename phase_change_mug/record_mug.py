@@ -1,6 +1,7 @@
-import holoviews as hv
-import bencher as bch
 from enum import auto
+
+import bencher as bch
+import holoviews as hv
 from strenum import StrEnum
 
 from phase_change_mug.temperature_recorder import TemperatureRecorderBase
@@ -26,7 +27,8 @@ class TemperatureRecorder(TemperatureRecorderBase):
 
 
 def mug_temps(
-    run_cfg: bch.BenchRunCfg = bch.BenchRunCfg(), report: bch.BenchReport = bch.BenchReport()
+    run_cfg: bch.BenchRunCfg = bch.BenchRunCfg(),  # noqa: B008
+    report: bch.BenchReport = bch.BenchReport(),  # noqa: B008
 ):
     run_cfg.use_sample_cache = True
     run_cfg.use_cache = False

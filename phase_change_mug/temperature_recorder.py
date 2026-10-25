@@ -1,6 +1,8 @@
-import bencher as bch
-from phase_change_mug.mqtt_client import TemperatureSensor
 import time
+
+import bencher as bch
+
+from phase_change_mug.mqtt_client import TemperatureSensor
 
 time_res = 1.0
 duration = 30.0

@@ -1,7 +1,9 @@
-import bencher as bch
 from enum import auto
-from strenum import StrEnum
+
+import bencher as bch
 import pandas as pd
+from strenum import StrEnum
+
 from phase_change_mug.temperature_recorder import TemperatureRecorderBase
 
 # from phase_change_mug.record_material import Su
@@ -40,7 +42,8 @@ class TemperatureRecorderSubstance(TemperatureRecorderBase):
 
 
 def material_temps(
-    run_cfg: bch.BenchRunCfg = bch.BenchRunCfg(), report: bch.BenchReport = bch.BenchReport()
+    run_cfg: bch.BenchRunCfg = bch.BenchRunCfg(),  # noqa: B008
+    report: bch.BenchReport = bch.BenchReport(),  # noqa: B008
 ):
     run_cfg.use_sample_cache = True
     run_cfg.only_hash_tag = True

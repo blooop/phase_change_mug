@@ -1,7 +1,7 @@
 import bencher as bch
 
-from phase_change_mug.record_mug import mug_temps
 from phase_change_mug.record_material import material_temps
+from phase_change_mug.record_mug import mug_temps
 
 bench_run = bch.BenchRunner("Mugs")
 
