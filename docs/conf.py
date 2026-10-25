@@ -8,7 +8,7 @@
 
 from importlib import metadata
 
-copyright = "2023, Austin Gregg-Smith"  # noqa: A001
+copyright = "2023, Austin Gregg-Smith"
 author = "Austin Gregg-Smith"
 release = metadata.version("python_template")
 project = f"python_template {release}"
