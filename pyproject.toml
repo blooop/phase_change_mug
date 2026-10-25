@@ -10,9 +10,9 @@ requires-python = ">=3.10"
 
 
 dependencies = [
-  "numpy>=1.2,<=1.26.2",
-  "holobench>=1.2.0,<=1.2.3",
-  "paho-mqtt<=1.6.1,>=1.6.1",
+  "numpy>=1.2,<=2.2.6",
+  "holobench>=1.2.0,<=1.117.0",
+  "paho-mqtt>=1.6.1,<=2.1.0",
 ]
 
 [project.optional-dependencies]
@@ -37,7 +37,7 @@ Home = "https://github.com/blooop/phase_change_mug"
 name = "phase_change_mug"
 
 [build-system]
-requires = ["flit_core >=3.2,<4"]
+requires = ["flit_core >=3.2,<5"]
 build-backend = "flit_core.buildapi"
 
 
